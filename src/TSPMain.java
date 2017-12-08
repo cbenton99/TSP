@@ -21,37 +21,30 @@ public class TSPMain {
 		// comment out writeDataToFile if matrices are already stored locally
 		////////////////////////////////////////////////////////////////////////
 
-/*
-		File dir = new File("TSP/");
-		File[] directoryListing = dir.listFiles();
-		int numberOfFiles = 0;
+		/*
+		 * File dir = new File("TSP/"); File[] directoryListing = dir.listFiles(); int
+		 * numberOfFiles = 0;
+		 * 
+		 * if (directoryListing != null) { for (File child : directoryListing) { if
+		 * (child.getName().charAt(0) != '.') {
+		 * 
+		 * System.out.println("**************************************"); TSPInstance t =
+		 * new TSPInstance(child); System.out.println("Name: " + t.getName());
+		 * System.out.println("Comment: " + t.getComment());
+		 * System.out.println("Dimension: " + t.getDimension());
+		 * System.out.println("Edge_Weight_Format: " + t.getEdgeWeightFormat());
+		 * System.out.println("Edge_Weight_Type: " + t.getEdgeWeightType()); //
+		 * System.out.println(t.getDistanceTable()); // writeDataToFile(t);
+		 * System.out.println("**************************************");
+		 * 
+		 * numberOfFiles++; } } }
+		 * 
+		 * System.out.println("Total number of files: " + numberOfFiles);
+		 */
 
-		if (directoryListing != null) {
-			for (File child : directoryListing) {
-				if (child.getName().charAt(0) != '.') {
-
-					System.out.println("**************************************");
-					TSPInstance t = new TSPInstance(child);
-					System.out.println("Name: " + t.getName());
-					System.out.println("Comment: " + t.getComment());
-					System.out.println("Dimension: " + t.getDimension());
-					System.out.println("Edge_Weight_Format: " + t.getEdgeWeightFormat());
-					System.out.println("Edge_Weight_Type: " + t.getEdgeWeightType()); //
-					System.out.println(t.getDistanceTable()); // writeDataToFile(t);
-					System.out.println("**************************************");
-
-					numberOfFiles++;
-				}
-			}
-		}
-		
-		System.out.println("Total number of files: " + numberOfFiles);
-*/
-		
-		
 		////////////////////////////////////////////////////////////////////////
 		// testing individual files
-		// 
+		//
 		////////////////////////////////////////////////////////////////////////
 
 		/*
@@ -79,17 +72,17 @@ public class TSPMain {
 		tspProblems.add(new String("TSP/hk48.tsp"));
 		tspProblems.add(new String("TSP/gr120.tsp"));
 		tspProblems.add(new String("TSP/brg180.tsp"));
-		tspProblems.add(new String("TSP/si535.tsp"));
-		tspProblems.add(new String("TSP/si1032.tsp"));
+//		tspProblems.add(new String("TSP/si535.tsp"));
+//		tspProblems.add(new String("TSP/si1032.tsp"));
 
 		for (String s : tspProblems) {
 			timeTSP(s, bestPaths);
 		}
 
 		// brute force test to show running time
-		
-//		TSPInstance t = new TSPInstance(new File("TSP/gr17.tsp"));
-//		BruteForce bf = new BruteForce(t);
+
+		// TSPInstance t = new TSPInstance(new File("TSP/gr17.tsp"));
+		// BruteForce bf = new BruteForce(t);
 
 	}
 
@@ -98,17 +91,22 @@ public class TSPMain {
 	 * the path, time to generate a path, and the best known path.
 	 */
 	public static void timeTSP(String tspName, HashMap<String, Integer> times) throws Exception {
+		long startTime, endTime, duration;
+		double ms;
+
 		TSPInstance tsp = new TSPInstance(new File(tspName));
 		System.out.println("Solving TSP instance: " + tspName + "-------------------------------");
 		System.out.println("Best known path cost: " + times.get(tspName) + "\n");
 
 		System.out.println("Greedy Nearest Neighbor Algorithm:");
-		long startTime = System.nanoTime();
+		startTime = System.nanoTime();
 		GreedyNN tspa = new GreedyNN(tsp);
-		long endTime = System.nanoTime();
-		long duration = (endTime - startTime);
-		double ms = duration / 1000000.0;
+		endTime = System.nanoTime();
+		duration = (endTime - startTime);
+		ms = duration / 1000000.0;
 		System.out.println("Greedy NN time in ms: " + ms + "\n");
+
+		
 
 		System.out.println("Improved Algorithm:");
 		startTime = System.nanoTime();
@@ -116,8 +114,9 @@ public class TSPMain {
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);
 		ms = duration / 1000000.0;
-
 		System.out.println("Improved Algorithm time in ms: " + ms + "\n\n");
+
+		
 	}
 
 	/*

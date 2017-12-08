@@ -25,7 +25,7 @@ public class ImprovedAlgorithm {
 	 * Solves the TSP problem by applying greedy nearest neighbor, 2-opt heuristic,
 	 * and simulated annealing search techniques.
 	 */
-	private void solve() throws Exception {
+	public void solve() throws Exception {
 		DistanceTable dt = tsp.getDistanceTable();
 		int[] cities = dt.listVertices();
 		int[] bestPath = null;
