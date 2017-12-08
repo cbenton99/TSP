@@ -210,12 +210,11 @@ public class EdgeWeightMatrix extends DistanceTable {
 			
 			break;
 		default:
-			throw new IllegalArgumentException("unsupported matrix type");
+			throw new IOException();
 		}
 		
-		// sanity check
 		if (!entries.isEmpty()) {
-			throw new IOException("edge weight matrix is longer than expected");
+			throw new IOException();
 		}
 	}
 	
