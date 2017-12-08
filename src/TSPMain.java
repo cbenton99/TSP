@@ -50,12 +50,12 @@ public class TSPMain {
 		
 		
 		////////////////////////////////////////////////////////////////////////
-		// testing individual files, prints either matrix or coordinates depending on
-		// input but all operations should perform the same
+		// testing individual files
+		// 
 		////////////////////////////////////////////////////////////////////////
 
 		/*
-		 * Computes Greedy NN paths for selected TSPLIB instances.
+		 * Add selected TSP Problems and their best known path costs
 		 */
 
 		HashMap<String, Integer> bestPaths = new HashMap<String, Integer>();
@@ -79,15 +79,17 @@ public class TSPMain {
 		tspProblems.add(new String("TSP/hk48.tsp"));
 		tspProblems.add(new String("TSP/gr120.tsp"));
 		tspProblems.add(new String("TSP/brg180.tsp"));
-//		tspProblems.add(new String("TSP/si535.tsp"));
-//		tspProblems.add(new String("TSP/si1032.tsp"));
+		tspProblems.add(new String("TSP/si535.tsp"));
+		tspProblems.add(new String("TSP/si1032.tsp"));
 
-		for (String s : tspProblems) {
-			timeTSP(s, bestPaths);
-		}
+//		for (String s : tspProblems) {
+//			timeTSP(s, bestPaths);
+//		}
 
-//		TSPInstance t = new TSPInstance(new File("TSP/att48.tsp"));
-//		BruteForce bf = new BruteForce(t);
+		// brute force test to show running time
+		
+		TSPInstance t = new TSPInstance(new File("TSP/gr17.tsp"));
+		BruteForce bf = new BruteForce(t);
 
 	}
 

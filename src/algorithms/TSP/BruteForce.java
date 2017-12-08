@@ -1,10 +1,21 @@
 package algorithms.TSP;
+
+import java.math.BigInteger;
 import java.util.Arrays;
 
 import problem.TSP.TSPInstance;
 
+/**
+ * Brute force implementation of TSP problem.
+ * Attempts to solve problem by finding distance of every
+ * combination of vertices which generates a candidate solution,
+ * resolving the least cost path out of entire set.
+ * 
+ * @author benton
+ *
+ */
 public class BruteForce {
-	
+
 	long startTime;
 	long endTime;
 	long deltaTime;
@@ -14,7 +25,8 @@ public class BruteForce {
 	private int[] solutionPath;
 	private int[] possiblePath;
 	private double solutionDistance;
-	private int permutation = 0;
+	private BigInteger permutation = BigInteger.ONE;
+	private BigInteger fac16 = new BigInteger("20922790000000");
 
 	public BruteForce(TSPInstance t) {
 		this.tsp = t;
@@ -31,32 +43,31 @@ public class BruteForce {
 		perm(1);
 		endTime = System.currentTimeMillis();
 		totalTime = endTime - startTime;
-//		System.out.println("time: " + totalTime + " milliseconds");
+		System.out.println("time: " + totalTime + " milliseconds");
 	}
 
 	private void perm(int index) {
 
 		if (index >= possiblePath.length - 1) {
 			double tempDist = findDistance(possiblePath);
-			++permutation;
-//			System.out.println("Permutation " + (++permutation));
-//			System.out.println("Total distance is " + tempDist);
-//			print(possiblePath);
+			permutation = permutation.add(BigInteger.ONE);
 			
-//			if (permutation % 1000000 == 0) {
-//				long tempTime = System.currentTimeMillis();
-//				deltaTime = (tempTime - startTime) / 1000;
-//				System.out.println(permutation + " permutations in " + deltaTime + "seconds");
-//				System.out.println("Total distance is " + solutionDistance);
-//				print(solutionPath);
-//			}
-			
-			
-
 			if (tempDist < solutionDistance) {
 				solutionDistance = tempDist;
 				solutionPath = Arrays.copyOf(possiblePath, possiblePath.length);
 			}
+
+			if (permutation.mod(new BigInteger("1000000")) == BigInteger.ZERO) {
+				long tempTime = System.currentTimeMillis();
+				deltaTime = (tempTime - startTime) / 1000;
+
+				System.out.println("Total distance is " + solutionDistance);
+				print(solutionPath);
+				System.out.println(permutation + " permutations in " + deltaTime + " seconds");
+				System.out.println(permutation.divide(fac16) + "% complete \n\n");
+			}
+
+			
 
 			return;
 		}
@@ -77,28 +88,17 @@ public class BruteForce {
 
 	private double findDistance(int[] path) {
 		double total = 0;
-		for (int index = 0; index < path.length-1; index++) {
+		for (int index = 0; index < path.length - 1; index++) {
 			total += tsp.getDistanceTable().getDistanceBetween(path[index], path[index + 1]);
 		}
 
-		total += tsp.getDistanceTable().getDistanceBetween(path[path.length-1], 1);
+		total += tsp.getDistanceTable().getDistanceBetween(path[path.length - 1], 1);
 		return total;
 	}
 
 	private void print(int[] arr) {
-		double sum = 0;
-		
+
 		System.out.println(Arrays.toString(arr));
-		for (int index = 0; index < solutionPath.length-1; index++) {
-			sum += tsp.getDistanceTable().getDistanceBetween(solutionPath[index], solutionPath[index + 1]);
-			
-			System.out.print(solutionPath[index] + " -> " + solutionPath[index + 1] + " : ");
-			System.out.println(tsp.getDistanceTable().getDistanceBetween(solutionPath[index], solutionPath[index + 1]));
-		}
-		sum += tsp.getDistanceTable().getDistanceBetween(solutionPath[solutionPath.length-1], 1);
-		System.out.print(solutionPath[solutionPath.length-1] + " -> " + 1 + " : ");
-		System.out.println(tsp.getDistanceTable().getDistanceBetween(solutionPath[solutionPath.length-1], 1));
-		System.out.println("real sum: " + sum);
 	}
 
 }

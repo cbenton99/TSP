@@ -5,7 +5,14 @@ import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
+/**
+ * Scan and load edge weight data from TSP files to TSP Instances
+ * 
+ *  Adapted from MOEA Framework
+ *  
+ * @author benton
+ *
+ */
 public class EdgeWeightMatrix extends DistanceTable {
 	
 	private final int size;

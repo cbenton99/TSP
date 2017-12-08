@@ -1,5 +1,12 @@
 package graph.TSP;
 
+/**
+ * 
+ * Definition for Coordinates, to be used at vertices
+ * 
+ * @author benton
+ *
+ */
 public class Coord {
 
 	private final double X;

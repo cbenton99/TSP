@@ -1,5 +1,11 @@
 package graph.TSP;
 
+/**
+ * Definition of an edge
+ * 
+ * @author benton
+ *
+ */
 public class Edge {
 
 	private final double V1;

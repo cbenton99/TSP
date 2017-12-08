@@ -2,6 +2,13 @@ package distanceformulas.TSP;
 import graph.TSP.Coord;
 import graph.TSP.Vertex;
 
+/**
+ * Abstract class for finding distances
+ * 
+ * 
+ * @author benton
+ *
+ */
 public abstract class DistanceFunction {
 	
 	public DistanceFunction() {

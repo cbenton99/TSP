@@ -1,5 +1,11 @@
 package graph.TSP;
 
+/**
+ * Definition of vertex
+ * 
+ * @author benton
+ *
+ */
 public class Vertex {
 	
 	private final int ID;

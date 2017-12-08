@@ -1,10 +1,18 @@
 package problem.TSP;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
-
+/**
+ * Class for loading and accessing the TSP instance problem
+ * 
+ * Adapted from MOEA Framework
+ * 
+ * @author benton
+ *
+ */
 public class TSPInstance {
 
 	private String name;
@@ -54,12 +62,9 @@ public class TSPInstance {
 				for (int i = 0; i < this.dimension; i++) {
 					line = reader.readLine();
 				}
-			} 
-			
-			
-			else if (line.isEmpty()) {
-				// do nothing
-			} else {
+			}
+
+			else {
 				String[] tokens = line.split(":");
 				String key = tokens[0].trim();
 				String value = tokens[1].trim();
@@ -107,17 +112,17 @@ public class TSPInstance {
 	public DistanceTable getDistanceTable() {
 		return distanceTable;
 	}
-	
+
 	public String printMatrix() {
 		String result = "";
-		
+
 		for (int row = 0; row < dimension; row++) {
 			for (int col = 0; col < dimension; col++) {
-				result += String.format("%" + -8 + "s", distanceTable.getDistanceBetween(row+1, col+1));
+				result += String.format("%" + -8 + "s", distanceTable.getDistanceBetween(row + 1, col + 1));
 			}
 			result += "\n";
 		}
-		
+
 		return result;
 	}
 

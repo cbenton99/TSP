@@ -8,6 +8,14 @@ import distanceformulas.TSP.DistanceFunction;
 import graph.TSP.Coord;
 import graph.TSP.Vertex;
 
+/**
+ * Class loading, creating, and accessing Vertex data
+ * 
+ * Adapted from MOEA Framework
+ * 
+ * @author benton
+ *
+ */
 public class VertexData extends DistanceTable {
 
 	private final int size;
