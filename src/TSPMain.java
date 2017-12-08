@@ -82,14 +82,14 @@ public class TSPMain {
 		tspProblems.add(new String("TSP/si535.tsp"));
 		tspProblems.add(new String("TSP/si1032.tsp"));
 
-//		for (String s : tspProblems) {
-//			timeTSP(s, bestPaths);
-//		}
+		for (String s : tspProblems) {
+			timeTSP(s, bestPaths);
+		}
 
 		// brute force test to show running time
 		
-		TSPInstance t = new TSPInstance(new File("TSP/gr17.tsp"));
-		BruteForce bf = new BruteForce(t);
+//		TSPInstance t = new TSPInstance(new File("TSP/gr17.tsp"));
+//		BruteForce bf = new BruteForce(t);
 
 	}
 
