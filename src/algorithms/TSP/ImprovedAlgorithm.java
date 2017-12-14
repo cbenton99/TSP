@@ -48,10 +48,10 @@ public class ImprovedAlgorithm {
 			}
 		}
 
-		System.out.println("Path generated from greedy and 2-opt pre-processing:");
-		printTour(bestPath, dt);
+//		System.out.println("Path generated from greedy and 2-opt pre-processing:");
+//		printTour(bestPath, dt);
 
-		System.out.println("Path generated from simulated annealing:");
+//		System.out.println("Path generated from simulated annealing:");
 		bestPath = simulatedAnnealing(bestPath, dt, 10000, 0.005);
 		printTour(bestPath, dt);
 	}
@@ -110,6 +110,7 @@ public class ImprovedAlgorithm {
 	private void printTour(int[] tour, DistanceTable dt) {
 		shiftArray(tour);
 
+		System.out.print("Path found: ");
 		for (int i = 0; i < tour.length; i++) {
 			System.out.print(tour[i] + ", ");
 		}

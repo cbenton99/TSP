@@ -80,17 +80,24 @@ public class TSPMain {
 		tspProblems.add(new String("TSP/hk48.tsp"));
 		tspProblems.add(new String("TSP/gr120.tsp"));
 		tspProblems.add(new String("TSP/brg180.tsp"));
-		// tspProblems.add(new String("TSP/si535.tsp"));
-		// tspProblems.add(new String("TSP/si1032.tsp"));
+		tspProblems.add(new String("TSP/si535.tsp"));
+		tspProblems.add(new String("TSP/si1032.tsp"));
 
-//		for (String s : tspProblems) {
-//			timeTSP(s, bestPaths);
-//		}
-
+		
+		
 		// brute force test to show running time
 
-		 TSPInstance t = new TSPInstance(new File("TSP/gr17.tsp"));
-		 BruteForce bf = new BruteForce(t);
+//		TSPInstance t = new TSPInstance(new File("TSP/gr17.tsp"));
+//		BruteForce bf = new BruteForce(t);
+		
+//		for (String s : tspProblems) {
+//			timeNN(s, bestPaths);
+//		}
+		
+//		System.out.println("Improved Algorithm: \n");
+		for (String s : tspProblems) {
+			timeIA(s, bestPaths);
+		}
 
 	}
 
@@ -122,16 +129,16 @@ public class TSPMain {
 
 		TSPInstance tsp = new TSPInstance(new File(tspName));
 		System.out.println("Solving TSP instance: " + tspName + "-------------------------------");
-		System.out.println("Best known path cost: " + times.get(tspName) + "\n");
+//		System.out.println("Best known path cost: " + times.get(tspName) + "\n");
 
-		System.out.println("Improved Algorithm:");
+//		System.out.println("Improved Algorithm:");
 		startTime = System.nanoTime();
 		ImprovedAlgorithm ia = new ImprovedAlgorithm(tsp);
 		endTime = System.nanoTime();
 		duration = (endTime - startTime);
 		ms = duration / 1000000.0;
-		System.out.println("Improved Algorithm time in ms: " + ms + "\n\n");
-
+//		System.out.println("Improved Algorithm time in ms: " + ms + "\n\n");
+		System.out.println("Best known path cost: " + times.get(tspName) + "\n");
 	}
 	
 
